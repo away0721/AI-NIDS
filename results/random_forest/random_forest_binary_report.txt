@@ -1,0 +1,47 @@
+Random Forest Binary Classification Baseline
+
+Dataset:
+- Data path: D:\Projects\ai-nids\data\processed\binary_dataset.csv
+- Total samples: 2827761
+- Feature count: 78
+- Task: Binary Classification
+- Label mapping:
+  - BENIGN -> 0
+  - ATTACK -> 1
+
+Train/Test Split:
+- test_size: 0.2
+- random_state: 42
+- stratify: y
+- X_train: (2262208, 78)
+- X_test: (565553, 78)
+- y_train: (2262208,)
+- y_test: (565553,)
+
+Model:
+- RandomForestClassifier
+- n_estimators: 100
+- random_state: 42
+- n_jobs: -1
+- class_weight: balanced
+
+Metrics:
+- Accuracy:  0.9991
+- Precision: 0.9967
+- Recall:    0.9986
+- F1 Score:  0.9976
+
+Confusion Matrix:
+[[453872    370]
+ [   156 111155]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      BENIGN     0.9997    0.9992    0.9994    454242
+      ATTACK     0.9967    0.9986    0.9976    111311
+
+    accuracy                         0.9991    565553
+   macro avg     0.9982    0.9989    0.9985    565553
+weighted avg     0.9991    0.9991    0.9991    565553
+

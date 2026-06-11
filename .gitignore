@@ -1,0 +1,31 @@
+# Python virtual environment
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Raw and processed datasets
+data/raw/
+data/processed/
+
+# Model files
+models/*.pkl
+models/*.joblib
+
+# Compressed files
+*.zip
+*.tar
+*.gz
+*.rar
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/

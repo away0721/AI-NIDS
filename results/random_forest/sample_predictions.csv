@@ -1,0 +1,11 @@
+﻿true_label,predicted_label,true_name,predicted_name,is_correct
+0,0,BENIGN,BENIGN,True
+0,0,BENIGN,BENIGN,True
+0,0,BENIGN,BENIGN,True
+0,0,BENIGN,BENIGN,True
+0,0,BENIGN,BENIGN,True
+1,1,ATTACK,ATTACK,True
+1,1,ATTACK,ATTACK,True
+1,1,ATTACK,ATTACK,True
+1,1,ATTACK,ATTACK,True
+1,1,ATTACK,ATTACK,True
