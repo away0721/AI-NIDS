@@ -1,0 +1,2 @@
+﻿model,accuracy,precision,recall,f1_score,sample_size,max_epochs,best_epoch
+PyTorch MLP,0.9907665594559661,0.9920959617043779,0.9607406276109279,0.9761665693004236,2827761,100,9

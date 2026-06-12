@@ -326,3 +326,268 @@
 该脚本是项目的第一个二分类 Baseline 实验，用于后续和 CNN、CNN-LSTM 等模型进行对比。
 
 当前项目中，Random Forest 的相关实验结果统一保存在 `results/random_forest/` 目录下。
+
+---
+
+## scripts/models/train_logistic_regression.py
+
+作用：
+
+用于训练 Logistic Regression 二分类 Baseline 模型，并与 Random Forest 结果进行对比。
+
+主要功能：
+
+- 读取 `data/processed/binary_dataset.csv`
+- 拆分特征矩阵 `X` 和标签 `y`
+- 使用 `train_test_split` 划分训练集和测试集
+- 使用 `StandardScaler` 对特征进行标准化
+- 训练 `LogisticRegression`
+- 计算 Accuracy、Precision、Recall、F1 Score
+- 生成 Confusion Matrix
+- 保存模型文件
+- 保存文本实验报告
+- 保存结构化指标 CSV
+- 保存指标柱状图
+- 保存混淆矩阵图
+
+输入文件：
+
+- `data/processed/binary_dataset.csv`
+
+输出文件：
+
+- `models/logistic_regression_binary.pkl`
+- `results/logistic_regression/logistic_regression_binary_report.txt`
+- `results/logistic_regression/logistic_regression_binary_metrics.csv`
+- `results/logistic_regression/logistic_regression_binary_metrics.png`
+- `results/logistic_regression/logistic_regression_binary_confusion_matrix.png`
+
+重要说明：
+
+Logistic Regression 是一个简单线性模型。相比 Random Forest，它在当前二分类任务中 Recall 较高，但 Precision 较低，说明模型能发现较多攻击流量，但误报正常流量较多。
+
+---
+
+## scripts/models/mlp_torch_binary.py
+
+作用：
+
+用于训练 PyTorch 版 MLP 二分类神经网络模型。
+
+主要功能：
+
+* 读取 `data/processed/binary_dataset.csv`
+* 拆分特征矩阵 `X` 和标签 `y`
+* 使用 `train_test_split` 划分训练集和测试集
+* 使用 `StandardScaler` 对特征进行标准化
+* 将数据转换为 PyTorch Tensor
+* 构建 MLP 神经网络
+* 使用 `BCEWithLogitsLoss` 进行二分类训练
+* 使用 Adam 优化器更新模型参数
+* 在测试集上评估模型
+* 保存 PyTorch 模型文件
+* 保存 Scaler
+* 保存文本实验报告
+* 保存结构化指标 CSV
+* 保存指标柱状图
+* 保存混淆矩阵图
+* 保存训练 Loss 曲线图
+
+输入文件：
+
+* `data/processed/binary_dataset.csv`
+
+输出文件：
+
+* `models/mlp_torch_binary.pt`
+* `models/mlp_torch_scaler.pkl`
+* `results/mlp_torch/mlp_torch_binary_report.txt`
+* `results/mlp_torch/mlp_torch_binary_metrics.csv`
+* `results/mlp_torch/mlp_torch_binary_metrics.png`
+* `results/mlp_torch/mlp_torch_binary_confusion_matrix.png`
+* `results/mlp_torch/mlp_torch_training_loss.png`
+
+当前实验设置：
+
+* 训练数据：完整二分类数据集
+* 采样数量：None，即使用全量数据
+* Epochs：10
+* Batch Size：1024
+* Learning Rate：0.001
+* 隐藏层结构：128 -> 64
+* 激活函数：ReLU
+* Dropout：0.3
+* 损失函数：BCEWithLogitsLoss
+* 优化器：Adam
+
+当前实验结果：
+
+* Accuracy：0.9867
+* Precision：0.9536
+* Recall：0.9799
+* F1 Score：0.9666
+
+Confusion Matrix：
+
+```txt
+[[448940   5302]
+ [  2235 109076]]
+```
+
+重要说明：
+
+该脚本是项目中的第一个 PyTorch 深度学习模型，用于验证普通全连接神经网络在二分类入侵检测任务上的表现。
+
+相比 Logistic Regression，PyTorch MLP 在 Accuracy、Precision、Recall 和 F1 上均有明显提升，说明神经网络能够学习到比线性模型更复杂的特征关系。
+
+但在当前二分类任务中，PyTorch MLP 仍低于 Random Forest，说明对于 CICIDS2017 这种表格型 Flow 特征数据，传统树模型仍然具有很强竞争力。
+
+该模型后续将作为 CNN、CNN-LSTM 深度学习模型的对照组。
+
+---
+
+## scripts/models/predict_with_mlp_torch.py
+
+作用：
+
+用于加载已经训练好的 PyTorch MLP 二分类模型，并对样本 Flow 进行预测。
+
+主要功能：
+
+- 加载 `models/mlp_torch_binary.pt`
+- 加载 `models/mlp_torch_scaler.pkl`
+- 读取 `data/processed/binary_dataset.csv`
+- 随机抽取 5 条正常流量和 5 条攻击流量
+- 使用训练阶段保存的 Scaler 对样本特征进行标准化
+- 将样本转换为 PyTorch Tensor
+- 使用 MLP 模型输出攻击概率
+- 根据攻击概率生成二分类预测结果
+- 输出真实标签、预测标签、攻击概率和预测是否正确
+- 保存样本预测结果 CSV
+
+输入文件：
+
+- `models/mlp_torch_binary.pt`
+- `models/mlp_torch_scaler.pkl`
+- `data/processed/binary_dataset.csv`
+
+输出文件：
+
+- `results/mlp_torch/sample_predictions.csv`
+
+重要说明：
+
+该脚本用于验证 PyTorch MLP 模型的保存、加载和预测流程是否正常。
+
+预测时必须同时加载模型文件 `.pt` 和标准化器 `.pkl`。其中 `.pt` 保存神经网络模型参数，`.pkl` 保存训练阶段的特征标准化规则。
+
+该脚本证明 MLP 模型已经完成从训练到独立预测的闭环。
+
+---
+
+## scripts/models/cnn_torch_binary.py
+
+作用：
+
+用于训练 PyTorch 版 1D CNN 二分类模型。
+
+主要功能：
+
+- 读取 `data/processed/binary_dataset.csv`
+- 拆分特征矩阵 `X` 和标签 `y`
+- 使用 `train_test_split` 划分训练集和测试集
+- 使用 `StandardScaler` 对特征进行标准化
+- 将数据转换为 PyTorch Tensor
+- 将 78 个 Flow 特征 reshape 为 `[N, 1, 78]`
+- 构建 1D CNN 神经网络
+- 使用 `BCEWithLogitsLoss` 进行二分类训练
+- 使用 Adam 优化器更新模型参数
+- 在测试集上评估模型
+- 保存 PyTorch 模型文件
+- 保存 Scaler
+- 保存文本实验报告
+- 保存结构化指标 CSV
+- 保存指标柱状图
+- 保存混淆矩阵图
+- 保存训练 Loss 曲线图
+
+输入文件：
+
+- `data/processed/binary_dataset.csv`
+
+输出文件：
+
+- `models/cnn_torch_binary.pt`
+- `models/cnn_torch_scaler.pkl`
+- `results/cnn_torch/cnn_torch_binary_report.txt`
+- `results/cnn_torch/cnn_torch_binary_metrics.csv`
+- `results/cnn_torch/cnn_torch_binary_metrics.png`
+- `results/cnn_torch/cnn_torch_binary_confusion_matrix.png`
+- `results/cnn_torch/cnn_torch_training_loss.png`
+
+当前实验设置：
+
+- 训练数据：完整二分类数据集
+- 采样数量：None，即使用全量数据
+- Epochs：10
+- Batch Size：1024
+- Learning Rate：0.001
+- 卷积结构：Conv1d 1 -> 32 -> 64
+- 池化方式：AdaptiveAvgPool1d
+- 全连接层：64 -> 32 -> 1
+- 激活函数：ReLU
+- 损失函数：BCEWithLogitsLoss
+- 优化器：Adam
+
+当前实验结果：
+
+- Accuracy：0.9776
+- Precision：0.9039
+- Recall：0.9917
+- F1 Score：0.9458
+
+Confusion Matrix：
+
+```txt
+[[442510  11732]
+ [   924 110387]]
+
+ ---
+
+## scripts/models/predict_with_cnn_torch.py
+
+作用：
+
+用于加载已经训练好的 PyTorch CNN 二分类模型，并对样本 Flow 进行预测。
+
+主要功能：
+
+- 加载 `models/cnn_torch_binary.pt`
+- 加载 `models/cnn_torch_scaler.pkl`
+- 读取 `data/processed/binary_dataset.csv`
+- 随机抽取 5 条正常流量和 5 条攻击流量
+- 使用训练阶段保存的 Scaler 对样本特征进行标准化
+- 将样本转换为 PyTorch Tensor
+- 将输入 reshape 为 `[N, 1, 78]`
+- 使用 CNN 模型输出攻击概率
+- 根据攻击概率生成二分类预测结果
+- 输出真实标签、预测标签、攻击概率和预测是否正确
+- 保存样本预测结果 CSV
+
+输入文件：
+
+- `models/cnn_torch_binary.pt`
+- `models/cnn_torch_scaler.pkl`
+- `data/processed/binary_dataset.csv`
+
+输出文件：
+
+- `results/cnn_torch/sample_predictions.csv`
+
+重要说明：
+
+该脚本用于验证 PyTorch CNN 模型的保存、加载和预测流程是否正常。
+
+预测时必须同时加载模型文件 `.pt` 和标准化器 `.pkl`。其中 `.pt` 保存 CNN 神经网络模型参数，`.pkl` 保存训练阶段的特征标准化规则。
+
+CNN 的输入格式为 `[batch_size, channels, feature_length]`，因此预测前需要使用 `unsqueeze(1)` 将样本从 `[N, 78]` 转换为 `[N, 1, 78]`。

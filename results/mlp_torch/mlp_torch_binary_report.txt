@@ -1,0 +1,59 @@
+PyTorch MLP Binary Classification Baseline with Early Stopping
+
+Dataset:
+- Data path: D:\Projects\ai-nids\data\processed\binary_dataset.csv
+- Used samples: 2827761
+- Feature count: 78
+- Task: Binary Classification
+- Label mapping:
+  - BENIGN -> 0
+  - ATTACK -> 1
+
+Data Split:
+- Train set: (1809766, 78)
+- Validation set: (452442, 78)
+- Test set: (565553, 78)
+- random_state: 42
+- stratify: y
+
+Preprocessing:
+- StandardScaler
+- Scaler is fitted only on training set
+- Validation set and test set are transformed using the same scaler
+
+Model:
+- PyTorch MLP
+- Input dimension: 78
+- Hidden layers: 128 -> 64
+- Activation: ReLU
+- Dropout: 0.3
+- Output: 1 logit
+- Loss: BCEWithLogitsLoss
+- Optimizer: Adam
+- Max epochs: 100
+- Best epoch: 9
+- Patience: 5
+- Min delta: 0.0001
+- Batch size: 1024
+- Learning rate: 0.001
+
+Metrics:
+- Accuracy:  0.9908
+- Precision: 0.9921
+- Recall:    0.9607
+- F1 Score:  0.9762
+
+Confusion Matrix:
+[[453390    852]
+ [  4370 106941]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      BENIGN     0.9905    0.9981    0.9943    454242
+      ATTACK     0.9921    0.9607    0.9762    111311
+
+    accuracy                         0.9908    565553
+   macro avg     0.9913    0.9794    0.9852    565553
+weighted avg     0.9908    0.9908    0.9907    565553
+

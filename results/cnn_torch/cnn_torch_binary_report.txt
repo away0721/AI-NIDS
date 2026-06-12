@@ -1,0 +1,63 @@
+PyTorch CNN Binary Classification Baseline with Early Stopping
+
+Dataset:
+- Data path: D:\Projects\ai-nids\data\processed\binary_dataset.csv
+- Used samples: 2827761
+- Feature count: 78
+- Task: Binary Classification
+- Label mapping:
+  - BENIGN -> 0
+  - ATTACK -> 1
+
+Data Split:
+- Train set: (1809766, 78)
+- Validation set: (452442, 78)
+- Test set: (565553, 78)
+- random_state: 42
+- stratify: y
+
+Preprocessing:
+- StandardScaler
+- Scaler is fitted only on training set
+- Validation set and test set are transformed using the same scaler
+
+Model:
+- PyTorch 1D CNN
+- Input shape: [batch_size, 1, 78]
+- Conv1d: 1 -> 32
+- Conv1d: 32 -> 64
+- BatchNorm1d
+- AdaptiveAvgPool1d
+- Fully connected: 64 -> 32 -> 1
+- Activation: ReLU
+- Dropout: 0.3
+- Output: 1 logit
+- Loss: BCEWithLogitsLoss
+- Optimizer: Adam
+- Max epochs: 100
+- Best epoch: 16
+- Patience: 5
+- Min delta: 0.0001
+- Batch size: 1024
+- Learning rate: 0.001
+
+Metrics:
+- Accuracy:  0.9702
+- Precision: 0.9246
+- Recall:    0.9239
+- F1 Score:  0.9243
+
+Confusion Matrix:
+[[445853   8389]
+ [  8468 102843]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      BENIGN     0.9814    0.9815    0.9814    454242
+      ATTACK     0.9246    0.9239    0.9243    111311
+
+    accuracy                         0.9702    565553
+   macro avg     0.9530    0.9527    0.9528    565553
+weighted avg     0.9702    0.9702    0.9702    565553
+

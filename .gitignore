@@ -18,6 +18,8 @@ data/processed/
 # Model files
 models/*.pkl
 models/*.joblib
+models/*.pt
+models/*.pth
 
 # Compressed files
 *.zip

@@ -1,0 +1,2 @@
+﻿model,accuracy,precision,recall,f1_score,sample_size,max_epochs,best_epoch
+PyTorch CNN,0.9701937749424016,0.9245810558112774,0.9239248591783382,0.9242528410239819,2827761,100,16
