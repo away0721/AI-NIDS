@@ -852,3 +852,87 @@ Early Stopping 训练策略优化
 ```
 
 后续可以进入多分类任务、类别不平衡分析、误报漏报分析和更复杂的序列建模实验。
+
+### `scripts/models/multiclass/train_multiclass_logistic_regression.py`
+
+训练多分类 Logistic Regression 模型。该脚本读取 `data/processed/multiclass_dataset.csv`，使用 `StandardScaler` 对 78 个 Flow 特征进行标准化，并使用 `LabelEncoder` 将 `attack_category` 转换为数字类别。模型使用 `class_weight="balanced"` 缓解类别不平衡问题，最终输出分类报告、混淆矩阵、指标 CSV 和模型文件。
+
+输出文件包括：
+
+- `models/multiclass/logistic_regression_multiclass.pkl`
+- `models/multiclass/logistic_regression_multiclass_scaler.pkl`
+- `models/multiclass/multiclass_label_encoder.pkl`
+- `results/multiclass/logistic_regression/logistic_regression_multiclass_report.txt`
+- `results/multiclass/logistic_regression/logistic_regression_multiclass_metrics.csv`
+- `results/multiclass/logistic_regression/logistic_regression_multiclass_confusion_matrix.png`
+
+### `scripts/models/multiclass/predict_with_multiclass_logistic_regression.py`
+
+加载已经训练好的 Logistic Regression 多分类模型、Scaler 和 LabelEncoder，从每个类别中抽取若干样本进行预测，输出真实类别、预测类别、置信度和是否预测正确。用于直观观察模型在不同类别上的预测效果。
+
+输出文件：
+
+- `results/multiclass/logistic_regression/sample_predictions.csv`
+
+### `scripts/models/multiclass/train_multiclass_mlp.py`
+
+训练 PyTorch MLP 多分类模型。模型输入为 78 个 Flow 特征，输出为 9 个类别 logits。训练时使用 `CrossEntropyLoss`，并采用训练集、验证集和测试集划分。验证集用于 Early Stopping，测试集用于最终评估。该脚本支持 GPU 训练。
+
+输出文件包括：
+
+- `models/multiclass/mlp_torch_multiclass.pt`
+- `models/multiclass/mlp_torch_multiclass_scaler.pkl`
+- `results/multiclass/mlp_torch/mlp_torch_multiclass_report.txt`
+- `results/multiclass/mlp_torch/mlp_torch_multiclass_metrics.csv`
+- `results/multiclass/mlp_torch/mlp_torch_multiclass_training_history.csv`
+- `results/multiclass/mlp_torch/mlp_torch_multiclass_confusion_matrix.png`
+
+### `scripts/models/multiclass/predict_with_multiclass_mlp.py`
+
+加载 PyTorch MLP 多分类模型、Scaler 和 LabelEncoder，从每个类别抽样进行预测。该脚本使用 softmax 将模型输出 logits 转换为类别概率，并取最大概率对应类别作为预测结果。
+
+输出文件：
+
+- `results/multiclass/mlp_torch/sample_predictions.csv`
+
+### `scripts/models/multiclass/train_multiclass_cnn.py`
+
+训练 PyTorch 1D CNN 多分类模型。该脚本将每条 Flow 的 78 个特征转换为 `[N, 1, 78]` 的输入形式，通过一维卷积提取局部特征。模型输出 9 个类别 logits，使用 `CrossEntropyLoss` 进行训练，并加入 Early Stopping。
+
+输出文件包括：
+
+- `models/multiclass/cnn_torch_multiclass.pt`
+- `models/multiclass/cnn_torch_multiclass_scaler.pkl`
+- `results/multiclass/cnn_torch/cnn_torch_multiclass_report.txt`
+- `results/multiclass/cnn_torch/cnn_torch_multiclass_metrics.csv`
+- `results/multiclass/cnn_torch/cnn_torch_multiclass_training_history.csv`
+- `results/multiclass/cnn_torch/cnn_torch_multiclass_confusion_matrix.png`
+
+### `scripts/models/multiclass/predict_with_multiclass_cnn.py`
+
+加载 PyTorch CNN 多分类模型、Scaler 和 LabelEncoder，从每个类别抽取样本进行预测。该脚本用于观察 CNN 在单条 Flow 样本上的预测类别、置信度和错误类型。
+
+输出文件：
+
+- `results/multiclass/cnn_torch/sample_predictions.csv`
+
+### `scripts/models/multiclass/compare_multiclass_models.py`
+
+读取 Random Forest、Logistic Regression、PyTorch MLP 和 PyTorch CNN 四个多分类模型的指标 CSV，生成统一的模型对比表和对比图。对比指标包括 Accuracy、Macro Precision、Macro Recall、Macro F1、Weighted Precision、Weighted Recall 和 Weighted F1。
+
+输出文件：
+
+- `results/multiclass/model_comparison/multiclass_model_comparison.csv`
+- `results/multiclass/model_comparison/multiclass_model_comparison.png`
+
+## Day6：类别不平衡优化实验脚本
+
+| Script | Description |
+|---|---|
+| `scripts/models/multiclass/train_multiclass_mlp_weighted.py` | 训练使用 balanced class weight 的 Weighted MLP |
+| `scripts/models/multiclass/train_multiclass_mlp_weighted_clipped.py` | 训练裁剪最大类别权重的 Clipped Weighted MLP |
+| `scripts/models/multiclass/compare_mlp_weight_experiments.py` | 对比 MLP、Weighted MLP、Clipped Weighted MLP |
+| `scripts/models/multiclass/train_multiclass_cnn_weighted.py` | 训练使用 balanced class weight 的 Weighted CNN |
+| `scripts/models/multiclass/train_multiclass_cnn_weighted_clipped.py` | 训练裁剪最大类别权重的 Clipped Weighted CNN |
+| `scripts/models/multiclass/compare_cnn_weight_experiments.py` | 对比 CNN、Weighted CNN、Clipped Weighted CNN |
+| `scripts/models/multiclass/compare_deep_learning_weight_experiments.py` | 对比所有深度学习权重实验 |

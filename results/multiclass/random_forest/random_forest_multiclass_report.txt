@@ -1,0 +1,59 @@
+Random Forest Multi-Class Classification Report
+
+Dataset:
+- Data path: D:\Projects\ai-nids\data\processed\multiclass_dataset.csv
+- Samples: 2827761
+- Feature count: 78
+- Label column: attack_category
+- Classes: ['BENIGN', 'Bot', 'BruteForce', 'DDoS', 'DoS', 'Heartbleed', 'Infiltration', 'PortScan', 'WebAttack']
+
+Data Split:
+- Train set: (2262208, 78)
+- Test set: (565553, 78)
+- test_size: 0.2
+- random_state: 42
+- stratify: y
+
+Model:
+- RandomForestClassifier
+- n_estimators: 100
+- class_weight: balanced_subsample
+- n_jobs: -1
+
+Metrics:
+- Accuracy:           0.9989
+- Macro Precision:    0.9845
+- Macro Recall:       0.9221
+- Macro F1 Score:     0.9463
+- Weighted Precision: 0.9989
+- Weighted Recall:    0.9989
+- Weighted F1 Score:  0.9989
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      BENIGN     0.9993    0.9993    0.9993    454242
+         Bot     0.8850    0.7673    0.8219       391
+  BruteForce     1.0000    0.9989    0.9995      2766
+        DDoS     1.0000    0.9995    0.9997     25605
+         DoS     0.9985    0.9988    0.9986     50343
+  Heartbleed     1.0000    1.0000    1.0000         2
+Infiltration     1.0000    0.5714    0.7273         7
+    PortScan     0.9938    0.9954    0.9946     31761
+   WebAttack     0.9837    0.9679    0.9757       436
+
+    accuracy                         0.9989    565553
+   macro avg     0.9845    0.9221    0.9463    565553
+weighted avg     0.9989    0.9989    0.9989    565553
+
+
+Confusion Matrix:
+[[453937     39      0      1     67      0      0    196      2]
+ [    91    300      0      0      0      0      0      0      0]
+ [     3      0   2763      0      0      0      0      0      0]
+ [    14      0      0  25591      0      0      0      0      0]
+ [    59      0      0      0  50283      0      0      1      0]
+ [     0      0      0      0      0      2      0      0      0]
+ [     3      0      0      0      0      0      4      0      0]
+ [   135      0      0      0      6      0      0  31615      5]
+ [    11      0      0      0      3      0      0      0    422]]

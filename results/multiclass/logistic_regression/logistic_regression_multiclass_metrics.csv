@@ -1,0 +1,2 @@
+﻿model,task,accuracy,macro_precision,macro_recall,macro_f1,weighted_precision,weighted_recall,weighted_f1
+Logistic Regression,multiclass,0.7840821284654135,0.37766805161675676,0.8978361517267994,0.42232692956966617,0.9396488178708032,0.7840821284654135,0.8406055025268688

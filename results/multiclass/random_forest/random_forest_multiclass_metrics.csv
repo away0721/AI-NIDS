@@ -1,0 +1,2 @@
+﻿model,task,accuracy,macro_precision,macro_recall,macro_f1,weighted_precision,weighted_recall,weighted_f1
+Random Forest,multiclass,0.9988754369616994,0.984466913076948,0.9220544927720619,0.9462942288512056,0.998865270973715,0.9988754369616994,0.99886664066563

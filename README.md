@@ -298,3 +298,49 @@ Planned next steps:
 * Explore CNN-LSTM or sequence-based modeling
 * Improve model tuning and validation strategy
 * Prepare the project for resume and research presentation
+
+```md
+## Current Progress
+
+The project has completed both binary and multiclass intrusion detection experiments on CICIDS2017.
+
+### Binary Classification
+
+Implemented models:
+
+- Random Forest
+- Logistic Regression
+- PyTorch MLP
+- PyTorch CNN
+
+### Multiclass Classification
+
+Implemented models:
+
+- Random Forest
+- Logistic Regression
+- PyTorch MLP
+- PyTorch CNN
+
+The multiclass task classifies traffic into the following categories:
+
+- BENIGN
+- Bot
+- BruteForce
+- DDoS
+- DoS
+- Heartbleed
+- Infiltration
+- PortScan
+- WebAttack
+
+### Multiclass Model Comparison
+
+| Model | Accuracy | Macro F1 | Weighted F1 |
+|---|---:|---:|---:|
+| Random Forest | 0.9989 | 0.9463 | 0.9989 |
+| Logistic Regression | 0.7841 | 0.4223 | 0.8406 |
+| PyTorch MLP | 0.9929 | 0.7747 | 0.9925 |
+| PyTorch CNN | 0.9966 | 0.7697 | 0.9962 |
+
+Random Forest achieved the best overall performance across Accuracy, Macro F1 and Weighted F1. PyTorch CNN achieved strong overall accuracy, while PyTorch MLP achieved comparable Macro F1. Logistic Regression served as a linear baseline but struggled with false positives under severe class imbalance.
