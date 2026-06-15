@@ -1,0 +1,53 @@
+Weighted PyTorch MLP Multiclass Classification Report
+============================================================
+
+Best Epoch: 10
+Best Validation Loss: 0.075717
+
+Class Weights:
+BENIGN: 0.138339
+Bot: 100.000000
+BruteForce: 22.713782
+DDoS: 2.454173
+DoS: 1.248239
+Heartbleed: 100.000000
+Infiltration: 100.000000
+PortScan: 1.978503
+WebAttack: 100.000000
+
+Metrics:
+accuracy: 0.941312
+macro_precision: 0.590287
+macro_recall: 0.948236
+macro_f1_score: 0.642982
+weighted_precision: 0.968153
+weighted_recall: 0.941312
+weighted_f1_score: 0.951674
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      BENIGN     0.9996    0.9277    0.9623    454242
+         Bot     0.0403    1.0000    0.0775       391
+  BruteForce     0.5407    0.9953    0.7007      2766
+        DDoS     0.9055    0.9987    0.9498     25605
+         DoS     0.8461    0.9955    0.9147     50343
+  Heartbleed     1.0000    1.0000    1.0000         2
+Infiltration     0.0238    0.7143    0.0461         7
+    PortScan     0.8226    0.9990    0.9023     31761
+   WebAttack     0.1341    0.9037    0.2335       436
+
+    accuracy                         0.9413    565553
+   macro avg     0.5903    0.9482    0.6430    565553
+weighted avg     0.9682    0.9413    0.9517    565553
+
+Confusion Matrix:
+[[421401   9307   2210   2669   9078      0    205   6841   2531]
+ [     0    391      0      0      0      0      0      0      0]
+ [     7      0   2753      0      6      0      0      0      0]
+ [    25      1      0  25571      8      0      0      0      0]
+ [   123      0     94      1  50115      0      0      0     10]
+ [     0      0      0      0      0      2      0      0      0]
+ [     1      0      0      0      1      0      5      0      0]
+ [     5      0      3      0     19      0      0  31730      4]
+ [     3      0     32      0      6      0      0      1    394]]

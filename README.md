@@ -406,7 +406,7 @@ python scripts/analysis/multiclass/generate_error_analysis_summary.py
 | `docs/Day7.md`     | Error pattern analysis                        |
 | `docs/scripts.md`  | Script index                                  |
 | `docs/glossary.md` | Project glossary                              |
-
+| `docs/results.md`  | Explain important result folders, metrics files, charts, and error analysis outputs |
 ## Tech Stack
 
 * Python
