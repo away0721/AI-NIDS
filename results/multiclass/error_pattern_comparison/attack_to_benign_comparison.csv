@@ -1,0 +1,21 @@
+﻿true_label,predicted_label,error_type,count,model
+WebAttack,BENIGN,WebAttack -> BENIGN,373,CNN
+Bot,BENIGN,Bot -> BENIGN,245,CNN
+DoS,BENIGN,DoS -> BENIGN,112,CNN
+BruteForce,BENIGN,BruteForce -> BENIGN,36,CNN
+DDoS,BENIGN,DDoS -> BENIGN,17,CNN
+PortScan,BENIGN,PortScan -> BENIGN,11,CNN
+Infiltration,BENIGN,Infiltration -> BENIGN,6,CNN
+PortScan,BENIGN,PortScan -> BENIGN,135,Random Forest
+Bot,BENIGN,Bot -> BENIGN,91,Random Forest
+DoS,BENIGN,DoS -> BENIGN,59,Random Forest
+DDoS,BENIGN,DDoS -> BENIGN,14,Random Forest
+WebAttack,BENIGN,WebAttack -> BENIGN,11,Random Forest
+BruteForce,BENIGN,BruteForce -> BENIGN,3,Random Forest
+Infiltration,BENIGN,Infiltration -> BENIGN,3,Random Forest
+DoS,BENIGN,DoS -> BENIGN,36,Clipped Weighted CNN
+DDoS,BENIGN,DDoS -> BENIGN,10,Clipped Weighted CNN
+PortScan,BENIGN,PortScan -> BENIGN,6,Clipped Weighted CNN
+WebAttack,BENIGN,WebAttack -> BENIGN,4,Clipped Weighted CNN
+Bot,BENIGN,Bot -> BENIGN,3,Clipped Weighted CNN
+BruteForce,BENIGN,BruteForce -> BENIGN,2,Clipped Weighted CNN

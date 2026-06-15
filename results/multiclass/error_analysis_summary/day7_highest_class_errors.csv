@@ -1,0 +1,4 @@
+﻿model,highest_error_class,highest_error_rate,highest_error_count,highest_error_support,highest_attack_to_benign_class,highest_attack_to_benign_rate,highest_attack_to_benign_count,highest_attack_to_benign_support
+CNN,WebAttack,0.8944954128440367,390,436,Infiltration,0.8571428571428571,6,7
+Random Forest,Infiltration,0.4285714285714285,3,7,Infiltration,0.4285714285714285,3,7
+Clipped Weighted CNN,Infiltration,0.1428571428571428,1,7,WebAttack,0.0091743119266055,4,436

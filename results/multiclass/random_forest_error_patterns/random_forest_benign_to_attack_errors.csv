@@ -1,0 +1,6 @@
+﻿true_label,predicted_label,error_type,count
+BENIGN,PortScan,BENIGN -> PortScan,196
+BENIGN,DoS,BENIGN -> DoS,67
+BENIGN,Bot,BENIGN -> Bot,39
+BENIGN,WebAttack,BENIGN -> WebAttack,2
+BENIGN,DDoS,BENIGN -> DDoS,1

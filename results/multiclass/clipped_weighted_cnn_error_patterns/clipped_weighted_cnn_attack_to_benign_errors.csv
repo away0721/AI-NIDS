@@ -1,0 +1,7 @@
+﻿true_label,predicted_label,error_type,count
+DoS,BENIGN,DoS -> BENIGN,36
+DDoS,BENIGN,DDoS -> BENIGN,10
+PortScan,BENIGN,PortScan -> BENIGN,6
+WebAttack,BENIGN,WebAttack -> BENIGN,4
+Bot,BENIGN,Bot -> BENIGN,3
+BruteForce,BENIGN,BruteForce -> BENIGN,2

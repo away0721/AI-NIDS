@@ -1,0 +1,5 @@
+﻿finding,model,meaning
+Total errors fewest,Random Forest,整体错误数量最少，综合稳定性最好
+Attack -> BENIGN errors fewest,Clipped Weighted CNN,攻击漏报最少，更适合减少漏报
+BENIGN -> Attack errors fewest,Random Forest,正常流量误报最少，更适合降低告警噪声
+Total errors most,Clipped Weighted CNN,整体错误数量最多，需要关注误报或漏报副作用

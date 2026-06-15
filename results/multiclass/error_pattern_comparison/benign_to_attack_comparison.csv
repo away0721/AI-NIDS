@@ -1,0 +1,19 @@
+﻿true_label,predicted_label,error_type,count,model
+BENIGN,DoS,BENIGN -> DoS,866,CNN
+BENIGN,PortScan,BENIGN -> PortScan,204,CNN
+BENIGN,BruteForce,BENIGN -> BruteForce,20,CNN
+BENIGN,DDoS,BENIGN -> DDoS,6,CNN
+BENIGN,Infiltration,BENIGN -> Infiltration,1,CNN
+BENIGN,PortScan,BENIGN -> PortScan,196,Random Forest
+BENIGN,DoS,BENIGN -> DoS,67,Random Forest
+BENIGN,Bot,BENIGN -> Bot,39,Random Forest
+BENIGN,WebAttack,BENIGN -> WebAttack,2,Random Forest
+BENIGN,DDoS,BENIGN -> DDoS,1,Random Forest
+BENIGN,Bot,BENIGN -> Bot,9296,Clipped Weighted CNN
+BENIGN,PortScan,BENIGN -> PortScan,6570,Clipped Weighted CNN
+BENIGN,DoS,BENIGN -> DoS,4135,Clipped Weighted CNN
+BENIGN,WebAttack,BENIGN -> WebAttack,1930,Clipped Weighted CNN
+BENIGN,DDoS,BENIGN -> DDoS,1280,Clipped Weighted CNN
+BENIGN,BruteForce,BENIGN -> BruteForce,1058,Clipped Weighted CNN
+BENIGN,Infiltration,BENIGN -> Infiltration,245,Clipped Weighted CNN
+BENIGN,Heartbleed,BENIGN -> Heartbleed,8,Clipped Weighted CNN

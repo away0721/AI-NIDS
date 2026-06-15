@@ -1,0 +1,4 @@
+﻿model,total_errors,attack_to_benign_errors,benign_to_attack_errors,attack_to_attack_errors
+CNN,1933,800,1097,36
+Random Forest,636,316,305,15
+Clipped Weighted CNN,24757,61,24522,174

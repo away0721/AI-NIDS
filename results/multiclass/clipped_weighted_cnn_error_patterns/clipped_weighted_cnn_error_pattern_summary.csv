@@ -1,0 +1,26 @@
+﻿true_label,predicted_label,error_type,count
+BENIGN,Bot,BENIGN -> Bot,9296
+BENIGN,PortScan,BENIGN -> PortScan,6570
+BENIGN,DoS,BENIGN -> DoS,4135
+BENIGN,WebAttack,BENIGN -> WebAttack,1930
+BENIGN,DDoS,BENIGN -> DDoS,1280
+BENIGN,BruteForce,BENIGN -> BruteForce,1058
+BENIGN,Infiltration,BENIGN -> Infiltration,245
+DoS,BruteForce,DoS -> BruteForce,108
+DoS,BENIGN,DoS -> BENIGN,36
+DoS,WebAttack,DoS -> WebAttack,26
+WebAttack,BruteForce,WebAttack -> BruteForce,12
+PortScan,DoS,PortScan -> DoS,11
+DDoS,BENIGN,DDoS -> BENIGN,10
+BENIGN,Heartbleed,BENIGN -> Heartbleed,8
+BruteForce,DoS,BruteForce -> DoS,6
+PortScan,BENIGN,PortScan -> BENIGN,6
+WebAttack,BENIGN,WebAttack -> BENIGN,4
+PortScan,WebAttack,PortScan -> WebAttack,4
+Bot,BENIGN,Bot -> BENIGN,3
+DDoS,DoS,DDoS -> DoS,3
+BruteForce,BENIGN,BruteForce -> BENIGN,2
+Infiltration,DoS,Infiltration -> DoS,1
+PortScan,BruteForce,PortScan -> BruteForce,1
+WebAttack,DoS,WebAttack -> DoS,1
+WebAttack,PortScan,WebAttack -> PortScan,1

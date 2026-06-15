@@ -936,3 +936,14 @@ Early Stopping 训练策略优化
 | `scripts/models/multiclass/train_multiclass_cnn_weighted_clipped.py` | 训练裁剪最大类别权重的 Clipped Weighted CNN |
 | `scripts/models/multiclass/compare_cnn_weight_experiments.py` | 对比 CNN、Weighted CNN、Clipped Weighted CNN |
 | `scripts/models/multiclass/compare_deep_learning_weight_experiments.py` | 对比所有深度学习权重实验 |
+
+## Day7：错误模式分析脚本
+
+| Script | Description |
+|---|---|
+| `scripts/analysis/multiclass/analyze_cnn_error_patterns.py` | 分析原始 CNN 的错误模式，统计 Top 错误类型、攻击漏报和正常流量误报 |
+| `scripts/analysis/multiclass/analyze_random_forest_error_patterns.py` | 分析 Random Forest 的错误模式 |
+| `scripts/analysis/multiclass/analyze_clipped_weighted_cnn_error_patterns.py` | 分析 Clipped Weighted CNN 的错误模式 |
+| `scripts/analysis/multiclass/compare_error_patterns.py` | 对比 CNN、Random Forest 和 Clipped Weighted CNN 的总错误、漏报和误报 |
+| `scripts/analysis/multiclass/compare_class_error_rates.py` | 按真实类别统计不同模型的错误率和 Attack -> BENIGN 比例 |
+| `scripts/analysis/multiclass/generate_error_analysis_summary.py` | 自动生成 Day7 错误分析总结 Markdown 和关键发现 CSV |
